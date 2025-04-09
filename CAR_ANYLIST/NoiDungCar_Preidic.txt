@@ -1,0 +1,55 @@
+2.
+Dong 1 : ### Sau khi vệ sinh xe, giờ tôi quyết định sử dụng `Linear Regression` để dự đoán.
+
+Vì vậy, để sử dụng, tôi phải đưa ra một số giả định và biến chúng thành sự thật để có thể hỗ trợ tôi sử dụng `Linear Regression`.
+
+Bởi vì tôi biết rằng thuật toán `Linear Regression` chỉ hoạt động khi mối quan hệ giữa các đặc điểm với cột mục tiêu là tuyến tính.
+
+Tôi không cần tập trung vào các cột phân loại vì chúng sẽ được chuyển đổi thành biến giả định.
+
+Tất cả những gì tôi gặp vấn đề với các cột số. như `Mileage`, `EngineV` và `Year`
+
+Dong 12 :.Cho đến nay
+
+* Dữ liệu có mối quan hệ tuyến tính với cột mục tiêu.
+* Gần như phân phối chuẩn, tức là tôi cẩn thận trong quá trình vệ sinh xe trước đó bằng cách lấy phần trăm thứ 99.
+
+### Bây giờ hãy kiểm tra Đa cộng tuyến.
+
+điều này là đúng khi tính năng của dữ liệu được liên kết với tính năng khác.
+
+Dong 19 :
+Mô hình VIF (Hệ số lạm phát phương sai - Hệ số phóng đại phương sai) là một phương pháp thống kê dùng để phát hiện hiện tượng đa tuyến cộng đồng (đa cộng tuyến) trong phân tích hồi phục.
+Đa cộng tuyến xảy ra khi các biến độc lập trong mô hình có mối quan hệ tương quan cao với nhau, điều này có thể gây ra vấn đề về độ chính xác của hệ số phục hồi và làm giảm độ tin cậy của mô hình.
+Tôi sẽ sử dụng VIF hoặc hệ số lạm phát phương sai để kiểm tra đa cộng tuyến.
+
+VIF tạo ra một phép đo ước tính căn bậc hai của lỗi chuẩn của ước tính lớn hơn bao nhiêu so với tình huống mà biến hoàn toàn không tương quan với các tính năng khác.
+
+TREN Dong 23 Duoi 14 :
+Nhìn chung, các giá trị nằm trong khoảng `1 đến 5` hoặc `1< VIF < 5` được coi là ổn, nhưng tùy thuộc vào vấn đề đang gặp phải và người phát triển. Người đó sẽ quyết định giá trị cắt bỏ dựa trên kinh nghiệm trước đây của mình.
+
+Từ kết quả tôi nhận được, có vẻ như cột `Năm` có quá nhiều mối tương quan với các cột khác. Và nó sẽ làm giảm các giá trị đặc trưng khác. Sẽ tốt hơn nếu giảm cột năm xuống
+
+Bài viết này (https://statisticalhorizons.com/multicollinearity) có nhiều thông tin hơn về vấn đề này.
+
+Tren 26 Duoi 16 :
+Tôi sẽ sử dụng phương thức `pandas` `.get_dummies()` cho mục đích này, phương thức này sẽ tạo một cột mới cho tất cả các giá trị phân loại. Phương thức này sẽ làm tăng chiều của dữ liệu.
+
+
+3_HOIQUYTUYENTINH
+Dưới dòng 13 :
+Đây là một kết quả rất tốt. Tất cả các giá trị đều dưới 5, nhưng cột log_price(cột mục tiêu của chúng ta) có VIF giá trị là 42. Điều này cho chúng ta biết rằng giá xe có mối tương quan cao với các cột khác, và đây là một dấu hiệu rất tốt.
+Trong phân tích hồi phục, VIF (Hệ số lạm phát phương sai) có giá trị dưới 5 thường chỉ ra rằng không có vấn đề đa cộng tuyến tính nghiêm trọng giữa các biến độc lập.
+Tuy nhiên, việc làm cột mục tiêu (biến phụ thuộc) có giá trị VIF cao là điều mong muốn, bởi vì điều này có nghĩa là các biến độc lập của chúng ta có khả năng mong đợi tốt cho mục tiêu biến đổi - trong trường hợp này là giá xe.
+Khi các biến độc lập có thể giải quyết tốt sự biến thiên của biến phụ thuộc, mô hình phục hồi quy luật của chúng ta sẽ có khả năng mong đợi giá trị tốt hơn.
+- Cuối :
+Mô hình dự đoán sai nhiều ở những xe giá thấp – cụ thể, dự đoán cao hơn giá thật.
+Dựa vào biểu đồ PDF Residual, ta thấy đuôi nghiêng về phía âm → mô hình dự đoán vượt quá thực tế.
+Có thể vì đã xóa cột Model lúc xử lý dữ liệu, hoặc thiếu thông tin như tình trạng hư hỏng của xe.
+
+--> Phải tạo 1 mô hình mới giữ Nguyên cột ModelModel
+4_withModel
+
+### Các mô hình dựa cây được biết đến là rất mạnh mẽ và tập hợpcận tổng hợp là một trong những thuật toán học máy được sử dụng phổ biến nhất .
+Các mô hình dựa trên cây được biết đến là rất mạnh mẽ và phương pháp tiếp cận tổng hợp RandomForestlà một trong những thuật toán học máy được sử dụng phổ biến nhất.
+Ưu điểm chính của nó là yêu cầu xử lý dữ liệu trước tối thiểu và thường mang lại hiệu suất mạnh mẽ.
