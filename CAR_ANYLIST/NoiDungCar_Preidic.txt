@@ -1,4 +1,8 @@
+  
+
+                                            PHẦN NỘI DUNG NÀY CHƯA XONG 
 2.
+
 Dong 1 : ### Sau khi vệ sinh xe, giờ tôi quyết định sử dụng `Linear Regression` để dự đoán.
 
 Vì vậy, để sử dụng, tôi phải đưa ra một số giả định và biến chúng thành sự thật để có thể hỗ trợ tôi sử dụng `Linear Regression`.
